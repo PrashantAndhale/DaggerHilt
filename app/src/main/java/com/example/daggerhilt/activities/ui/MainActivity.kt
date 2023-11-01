@@ -1,20 +1,16 @@
 package com.example.daggerhilt.activities.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.TopAppBar
@@ -28,8 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import com.example.daggerhilt.Model.Post
-import com.example.daggerhilt.R
 import com.example.daggerhilt.Utils.ApiState
 import com.example.daggerhilt.Utils.Utility
 import com.example.daggerhilt.ViewModel.MainViewModel
@@ -59,7 +52,7 @@ class MainActivity : ComponentActivity() {
         if (utility.isInternetConnected()) {
             mainViewModel.getPost()
         }
-        getApiResult();
+        getApiResult()
         setContent {
             SetUiContent()
         }
@@ -67,79 +60,59 @@ class MainActivity : ComponentActivity() {
 
     private fun getApiResult() {
         lifecycleScope.launch {
-            mainViewModel._postStateFlow.collect {
-                when (it) {
-                    is ApiState.Success<Any> -> {
-                        val data = it.data as List<Post>
-                        for (item in data) {
-                            Log.d("Main", "onCreate: " + item.body)
-                        }
-                        setContent {
-                            DaggerHiltTheme {
-                                MyToolbar("Dashboard")
-                                PostList(data)
-                            }
-                        }
-                        mainViewModel._isLoading.value = false
-                        Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_LONG).show()
+            mainViewModel._postStateFlow.collect { state ->
+                when (state) {
+                    is ApiState.Success<*> -> {
+                        val data = (state.data as? List<Post>) ?: emptyList()
+                        processData(data)
                     }
 
-                    is ApiState.Empty -> {
-
-                    }
-
-                    is ApiState.Loading -> {
-                        mainViewModel._isLoading.value = true
-                    }
-
+                    is ApiState.Loading -> mainViewModel._isLoading.value = true
                     else -> {
-
+                        mainViewModel._isLoading.value = false
+                        // Handle other states or errors if needed
                     }
                 }
             }
         }
     }
 
-    @Composable
-    fun PostList(posts: List<Post>) {
-        Surface(
-            modifier = Modifier.fillMaxSize(), color = Color.White
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                MyToolbar("Dashboard")
-               // ImageViewExample()
+    private fun processData(data: List<Post>) {
+        mainViewModel._isLoading.value = false
+        setContent {
+            DaggerHiltTheme {
+                SetUiContent(data)
+            }
+        }
+        Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_LONG).show()
+    }
 
-                 LazyColumn {
-                     items(posts) { post ->
-                         PostItem(post)
-                     }
-                 }
+    @Composable
+    private fun SetUiContent(data: List<Post> = emptyList()) {
+        val isLoading by mainViewModel.isLoading.collectAsState()
+        Surface {
+            Column {
+                MyToolbar("Dashboard")
+                if (isLoading) {
+                    CircularProgressIndicator()
+                } else {
+                    PostList(data)
+                }
             }
         }
     }
 
     @Composable
-    fun ImageViewExample() {
-        // Load an image from a resource (you can also load from other sources)
-        val painter = painterResource(id = R.drawable.demo)
-
-        // Display the image with content scale and modifier
-        Image(
-            painter = painter,
-            contentDescription = null, // Provide a content description if needed for accessibility
-            modifier = Modifier
-                .size(200.dp, 200.dp) // Set the size of the image
-                .padding(16.dp), // Add padding if desired
-            contentScale = ContentScale.Crop, // Adjust the content scale as needed
-        )
+    private fun PostList(posts: List<Post>) {
+        LazyColumn {
+            items(posts) { post ->
+                PostItem(post)
+            }
+        }
     }
 
     @Composable
-    fun PostItem(post: Post) {
+    private fun PostItem(post: Post) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -152,13 +125,13 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun ClickableCard(post: Post, onItemClick: (Post) -> Unit) {
+    private fun ClickableCard(post: Post, onItemClick: (Post) -> Unit) {
         Card(
             modifier = Modifier
                 .fillMaxSize()
                 .clickable {
                     onItemClick(post)
-                }, // Make the Card clickable
+                }
         ) {
             Text(
                 text = post.body,
@@ -171,29 +144,11 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun CircularProgressIndicator() {
-        val isLoading by mainViewModel.isLoading.collectAsState()
-        if (isLoading) {
-            Box(
-                modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(color = Color.Black)
-            }
-        }
-    }
-
-    @Composable
-    fun PostItem(post: Int) {
-
-    }
-
-    @Composable
-    private fun SetUiContent() {
-        DaggerHiltTheme {
-            Column {
-                MyToolbar("Dashboard")
-                CircularProgressIndicator()
-            }
-
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(color = Color.Black)
         }
     }
 }
@@ -203,16 +158,17 @@ fun MyToolbar(title: String) {
     TopAppBar(
         title = {
             Text(
-                text = title, color = Color.White,
+                text = title,
+                color = Color.White,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp), // Center-align the text
+                    .padding(start = 16.dp, end = 16.dp)
             )
-
-        }, backgroundColor = Color.Blue, // Change the background color as needed
+        },
+        backgroundColor = Color.Blue,
         modifier = Modifier.fillMaxWidth()
     )
 }
@@ -222,9 +178,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
         modifier = modifier.fillMaxWidth(),
-        color = Color.White,
-
-        )
+        color = Color.White
+    )
 }
 
 @Preview(showBackground = false)

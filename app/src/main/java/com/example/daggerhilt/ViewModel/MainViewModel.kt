@@ -1,7 +1,5 @@
 package com.example.daggerhilt.ViewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.daggerhilt.Repositories.MainRespository
@@ -19,27 +17,16 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
+    val isLoading: StateFlow<Boolean> get() = _isLoading
 
-    private val postStateFlow: MutableStateFlow<ApiState<Any>> = MutableStateFlow(ApiState.Empty)
-
-    val _postStateFlow: StateFlow<ApiState<Any>> = postStateFlow
-
-
-    val currentName: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
-    }
-    private val _textLiveData = MutableLiveData<String>()
-    val textLiveData: LiveData<String>
-        get() = _textLiveData
-
-    fun getPost() = viewModelScope.launch {
-        postStateFlow.value = ApiState.Loading
-        mainRespository.getPost().catch { e ->
-            postStateFlow.value = ApiState.Failure(e)
-        }.collect {
-            postStateFlow.value = ApiState.Success(it)
+    val _postStateFlow = MutableStateFlow<ApiState<List<Any>>>(ApiState.Empty)
+    fun getPost() {
+        viewModelScope.launch {
+            _postStateFlow.value = ApiState.Loading
+            mainRespository.getPost()
+                .catch { e -> _postStateFlow.value = ApiState.Failure(e) }
+                .collect { data -> _postStateFlow.value = ApiState.Success(data) }
         }
-
     }
+
 }

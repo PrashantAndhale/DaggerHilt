@@ -53,6 +53,11 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+    testImplementation("org.mockito:mockito-core:3.+")
+    testImplementation("org.mockito:mockito-inline:3.+")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+
     implementation(libs.constraintlayout)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
@@ -63,11 +68,9 @@ dependencies {
     implementation(libs.material3)
     implementation(platform(libs.compose.bom))
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     // Coroutines
-    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
 
     implementation(libs.google.hilt.android)
@@ -95,8 +98,8 @@ dependencies {
     implementation(libs.rxandroid)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.material)
-    implementation ("io.reactivex.rxjava2:rxjava:2.2.7")
-    implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxjava:2.2.7")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
 }
 kapt {
     correctErrorTypes = true
