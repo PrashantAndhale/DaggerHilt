@@ -10,17 +10,20 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Named
+
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val mainRespository: MainRespository
+    private val mainRespository: MainRespository,
+    @Named("category") private var category: String
 ) : ViewModel() {
-
     val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
     val _postStateFlow = MutableStateFlow<ApiState<List<Any>>>(ApiState.Empty)
     fun getPost() {
+        System.out.println(category)
         viewModelScope.launch {
             _postStateFlow.value = ApiState.Loading
             mainRespository.getPost()
@@ -28,5 +31,4 @@ class MainViewModel @Inject constructor(
                 .collect { data -> _postStateFlow.value = ApiState.Success(data) }
         }
     }
-
 }

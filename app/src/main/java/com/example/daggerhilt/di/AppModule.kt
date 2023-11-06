@@ -5,6 +5,7 @@ import com.example.daggerhilt.BaseApp
 import com.example.daggerhilt.Network.ApiService
 import com.example.daggerhilt.Network.HeaderInterceptor
 import com.example.daggerhilt.Utils.Utility
+import com.example.daggerhilt.activities.ui.MainActivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -21,6 +23,7 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
+    @BaseUrl
     @Singleton
     fun getBaseUrl() = "https://jsonplaceholder.typicode.com/"
 
@@ -31,6 +34,13 @@ object AppModule {
     @Provides
     @FName
     fun provideFame() = "Dhara"
+
+
+    @Provides
+    @Named("category")
+    fun provideCategory(): String {
+        return MainActivity.category // Define the category string here
+    }
 
     @Provides
     @Singleton
@@ -66,7 +76,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRetrofit(
-        okHttpClient: OkHttpClient, baseUrl: String
+        okHttpClient: OkHttpClient, @BaseUrl baseUrl: String
     ): Retrofit {
         return Retrofit.Builder().baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build()
@@ -97,3 +107,11 @@ annotation class FName
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class Message
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class Category
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class BaseUrl

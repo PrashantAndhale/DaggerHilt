@@ -35,20 +35,29 @@ import com.example.daggerhilt.Utils.ApiState
 import com.example.daggerhilt.Utils.Utility
 import com.example.daggerhilt.ViewModel.MainViewModel
 import com.example.daggerhilt.activities.ui.ui.theme.DaggerHiltTheme
+import com.example.daggerhilt.activities.ui.ui.theme.Purple80
+import com.example.daggerhilt.activities.ui.ui.theme.PurpleGrey40
+import com.example.daggerhilt.viewmodelfactory.MainViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    companion object {
+        var category: String = ""
+    }
+
+    @Inject
+    lateinit var viewmodelFactory: MainViewModelFactory
 
     @Inject
     lateinit var utility: Utility
 
-    private val mainViewModel: MainViewModel by viewModels()
-
+    val mainViewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        category = "Prashant"
         if (utility.isInternetConnected()) {
             mainViewModel.getPost()
         }
@@ -126,13 +135,11 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun ClickableCard(post: Post, onItemClick: (Post) -> Unit) {
-        Card(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable {
-                    onItemClick(post)
-                }
-        ) {
+        Card(modifier = Modifier
+            .fillMaxSize()
+            .clickable {
+                onItemClick(post)
+            }) {
             Text(
                 text = post.body,
                 fontSize = 20.sp,
@@ -145,8 +152,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun CircularProgressIndicator() {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator(color = Color.Black)
         }
@@ -167,18 +173,14 @@ fun MyToolbar(title: String) {
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp)
             )
-        },
-        backgroundColor = Color.Blue,
-        modifier = Modifier.fillMaxWidth()
+        }, backgroundColor = PurpleGrey40, modifier = Modifier.fillMaxWidth()
     )
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier.fillMaxWidth(),
-        color = Color.White
+        text = "Hello $name!", modifier = modifier.fillMaxWidth(), color = Color.White
     )
 }
 

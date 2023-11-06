@@ -2,13 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="MainRepositoryTest">
+        <State />
+      </entry>
+      <entry key="MainRepositoryTest.getPost() should emit list of posts">
+        <State />
+      </entry>
+      <entry key="MainRepositoryTest.getPost() when error">
+        <State />
+      </entry>
       <entry key="MainViewModelTest">
-        <State />
-      </entry>
-      <entry key="MainViewModelTest.getPost">
-        <State />
-      </entry>
-      <entry key="MainViewModelTest.getPost() should update postStateFlow with error state on repository error">
         <State />
       </entry>
       <entry key="MainViewModelTest.getPost() should update postStateFlow with success data">
@@ -29,9 +32,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2023-11-01T05:32:04.914235600Z" />
         </State>
-      </entry>
-      <entry key="getPost()">
-        <State />
       </entry>
     </value>
   </component>
