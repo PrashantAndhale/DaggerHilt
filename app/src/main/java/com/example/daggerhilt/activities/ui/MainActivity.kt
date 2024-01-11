@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         category = "Prashant"
         if (utility.isInternetConnected()) {
-            mainViewModel.getPost()
+           // mainViewModel.getPost()
         }
         getApiResult()
         setContent {
@@ -95,7 +95,7 @@ class MainActivity : ComponentActivity() {
         }
         Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_LONG).show()
     }
-
+    @Preview(showBackground = false)
     @Composable
     private fun SetUiContent(data: List<Post> = emptyList()) {
         val isLoading by mainViewModel.isLoading.collectAsState()

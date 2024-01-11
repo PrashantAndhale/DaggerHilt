@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.kotlinx.serialization.json)
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("org.mockito:mockito-core:3.+")
     testImplementation("org.mockito:mockito-inline:3.+")
