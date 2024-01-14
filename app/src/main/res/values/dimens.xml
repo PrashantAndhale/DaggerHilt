@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_small">@dimen/_8sdp</dimen>
+    <dimen name="spacing_medium">@dimen/_16sdp</dimen>
+    <dimen name="spacing_large">@dimen/_24sdp</dimen>
+
+    <dimen name="text_size_small">@dimen/_14ssp</dimen>
+    <dimen name="text_size_default">@dimen/_16ssp</dimen>
+    <dimen name="text_size_medium">@dimen/_18ssp</dimen>
+    <dimen name="text_size_large">@dimen/_22ssp</dimen>
+    <dimen name="text_size_extra_large">@dimen/_28ssp</dimen>
+
+</resources>

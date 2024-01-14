@@ -19,6 +19,9 @@ android {
             useSupportLibrary = true
         }
     }
+    viewBinding {
+        enable = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -54,6 +57,11 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.ssp.android)
+    implementation(libs.sdp.android)
+    implementation(libs.google.material)
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("org.mockito:mockito-core:3.+")
     testImplementation("org.mockito:mockito-inline:3.+")

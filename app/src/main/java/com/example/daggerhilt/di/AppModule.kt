@@ -5,8 +5,7 @@ import com.example.daggerhilt.BaseApp
 import com.example.daggerhilt.Network.ApiService
 import com.example.daggerhilt.Network.HeaderInterceptor
 import com.example.daggerhilt.Utils.Utility
-import com.example.daggerhilt.activities.ui.MainActivity
-import dagger.Module
+ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -39,7 +38,7 @@ object AppModule {
     @Provides
     @Named("category")
     fun provideCategory(): String {
-        return MainActivity.category // Define the category string here
+        return "MainActivity.category "// Define the category string here
     }
 
     @Provides

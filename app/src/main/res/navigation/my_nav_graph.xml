@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.daggerhilt.activities.ui.fragments.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_globalMarketFragment"
+            app:destination="@id/globalMarketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/globalMarketFragment"
+        android:name="com.example.daggerhilt.activities.ui.fragments.GlobalMarketFragment"
+        android:label="fragment_global_market"
+        tools:layout="@layout/fragment_global_market" />
+</navigation>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="normal">0</integer>
+    <integer name="bold">1</integer>
+    <integer name="italic">2</integer>
+    <integer name="boldItalic">3</integer>
+    <integer name="heavy">4</integer>
+    <integer name="thin">5</integer>
+</resources>
