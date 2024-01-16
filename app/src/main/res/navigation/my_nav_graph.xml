@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.daggerhilt.activities.ui.fragments.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_globalMarketFragment"
             app:destination="@id/globalMarketFragment" />
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/globalMarketFragment"
         android:name="com.example.daggerhilt.activities.ui.fragments.GlobalMarketFragment"
-        android:label="fragment_global_market"
+        android:label="Global Market"
         tools:layout="@layout/fragment_global_market" />
 </navigation>

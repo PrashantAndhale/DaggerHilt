@@ -5,14 +5,16 @@ import com.example.daggerhilt.BaseApp
 import com.example.daggerhilt.Network.ApiService
 import com.example.daggerhilt.Network.HeaderInterceptor
 import com.example.daggerhilt.Utils.Utility
- import dagger.Module
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -24,7 +26,7 @@ object AppModule {
     @Provides
     @BaseUrl
     @Singleton
-    fun getBaseUrl() = "https://jsonplaceholder.typicode.com/"
+    fun getBaseUrl() = "https://www.nseindia.com/api/"
 
     @Provides
     @Singleton
@@ -61,8 +63,12 @@ object AppModule {
         httpLoggingInterceptor: HttpLoggingInterceptor, headerInterceptor: HeaderInterceptor
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
-        builder.addInterceptor(httpLoggingInterceptor)
-        builder.addInterceptor(headerInterceptor)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(headerInterceptor)
+            .protocols(listOf(Protocol.HTTP_1_1))
         return builder.build()
     }
 

@@ -8,19 +8,37 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.daggerhilt.R
 import com.example.daggerhilt.databinding.FragmentDashboardBinding
 
+interface OnItemClickListener {
+    fun onItemClicked(position: Int)
+}
+
 class DashboardFragment : Fragment() {
     lateinit var dashboardBinding: FragmentDashboardBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         dashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false)
+
         return dashboardBinding.root
+
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
+
+    override fun onDetach() {
+        super.onDetach()
 
     }
 
@@ -36,11 +54,18 @@ class DashboardFragment : Fragment() {
         val layoutManager = GridLayoutManager(activity, 2)
         dashboardBinding.dashboardRV.layoutManager = layoutManager
 
-        val courseRVAdapter = CourseRVAdapter(list, requireActivity())
+        val courseRVAdapter = CourseRVAdapter(list, object : OnItemClickListener {
+            override fun onItemClicked(position: Int) {
+                if (position == 0) {
+                    findNavController().navigate(R.id.action_dashboardFragment_to_globalMarketFragment)
+                }
+            }
+        })
         dashboardBinding.dashboardRV.adapter = courseRVAdapter
     }
 
 }
+
 
 data class DashboardRVModal(
     var courseName: String,
@@ -48,9 +73,8 @@ data class DashboardRVModal(
 )
 
 class CourseRVAdapter(
-
     private val courseList: List<DashboardRVModal>,
-    private val context: Context
+    private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<CourseRVAdapter.CourseViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -65,8 +89,11 @@ class CourseRVAdapter(
     }
 
     override fun onBindViewHolder(holder: CourseRVAdapter.CourseViewHolder, position: Int) {
-        holder.courseNameTV.text = courseList.get(position).courseName
-        holder.courseIV.setImageResource(courseList.get(position).courseImg)
+        holder.courseNameTV.text = courseList[position].courseName
+        holder.courseIV.setImageResource(courseList[position].courseImg)
+        holder.courseIV.setOnClickListener {
+            onItemClickListener.onItemClicked(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -76,6 +103,7 @@ class CourseRVAdapter(
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val courseNameTV: TextView = itemView.findViewById(R.id.idTVCourse)
         val courseIV: ImageView = itemView.findViewById(R.id.idIVCourse)
+
     }
 }
 

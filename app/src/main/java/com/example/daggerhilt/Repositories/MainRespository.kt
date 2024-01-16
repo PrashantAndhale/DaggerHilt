@@ -1,10 +1,9 @@
 package com.example.daggerhilt.Repositories
 
 import com.example.daggerhilt.Model.GlobalMarketData
+import com.example.daggerhilt.Model.MarketStatus
 import com.example.daggerhilt.Model.Post
 import com.example.daggerhilt.Network.ApiServiceImp
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,5 +21,11 @@ class MainRespository @Inject constructor(val apiServiceImp: ApiServiceImp) {
         deviceType: String
     ): Flow<GlobalMarketData> = flow {
         emit(apiServiceImp.getGlobalIndicatesListingData(url, view, deviceType))
+    }.flowOn(Dispatchers.IO)
+
+    fun getMarketStatus(
+        url: String
+    ): Flow<MarketStatus> = flow {
+        emit(apiServiceImp.getMarketStatus(url))
     }.flowOn(Dispatchers.IO)
 }

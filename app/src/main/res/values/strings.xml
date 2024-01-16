@@ -3,5 +3,9 @@
     <string name="title_activity_main">MainActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="global_market">Global Market</string>
+    <string name="european_markets">EUROPEAN MARKETS(%)</string>
+    <string name="asian_markets">ASIAN MARKETS(%)</string>
+    <string name="global_market_analysis">Global Market Analysis</string>
 
 </resources>

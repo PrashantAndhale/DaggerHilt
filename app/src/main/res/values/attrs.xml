@@ -3,4 +3,12 @@
     <declare-styleable name="text_style">
         <attr name="textStyle" format="integer" />
     </declare-styleable>
+    <declare-styleable name="text_color_style">
+        <attr name="textColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="text_size">
+        <attr name="textSize" format="dimension" />
+    </declare-styleable>
+
 </resources>

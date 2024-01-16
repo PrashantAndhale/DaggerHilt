@@ -1,8 +1,8 @@
 package com.example.daggerhilt.Network
 
 import com.example.daggerhilt.Model.GlobalMarketData
+import com.example.daggerhilt.Model.MarketStatus
 import com.example.daggerhilt.Model.Post
-import com.google.gson.JsonObject
 import javax.inject.Inject
 
 class ApiServiceImp @Inject constructor(val apiService: ApiService) {
@@ -12,4 +12,8 @@ class ApiServiceImp @Inject constructor(val apiService: ApiService) {
         view: String,
         deviceType: String
     ): GlobalMarketData = apiService.getGlobalIndicatesListingData(url, view, deviceType)
+
+    suspend fun getMarketStatus(
+        url: String,
+    ): MarketStatus = apiService.getMarketStatus()
 }

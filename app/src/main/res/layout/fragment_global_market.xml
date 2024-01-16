@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.ui.fragments.GlobalMarketFragment">
 
     <ProgressBar
@@ -11,12 +12,566 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            tools:context=".MainActivity">
+
+            <com.example.daggerhilt.CustomControl.PTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/global_market_analysis"
+                android:textSize="@dimen/text_size_default"
+                app:textStyle="@integer/bold" />
 
 
-</FrameLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <com.example.daggerhilt.CustomControl.PTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="US MARKETS(%)"
+                        android:textSize="@dimen/text_size_default"
+                        app:textColor="@color/colorGreen"
+                        app:textStyle="@integer/bold" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical"
+                                tools:ignore="RtlHardcoded">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dow Jones Futures"
+                                    android:textSize="@dimen/text_size_default"
+                                    app:textStyle="@integer/normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextDJ"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="S&amp;P 500"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextSP"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nasdaq"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextNA"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.example.daggerhilt.CustomControl.PTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/european_markets"
+                        android:textSize="@dimen/text_size_default"
+                        app:textColor="@color/colorGreen"
+                        app:textStyle="@integer/bold" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="FTSE"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextFT"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="CAC"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextCA"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="DAX"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextDA"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:contentPadding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.example.daggerhilt.CustomControl.PTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/asian_markets"
+                        android:textSize="@dimen/text_size_default"
+                        app:textColor="@color/colorGreen"
+                        app:textStyle="@integer/bold" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="GIFT NIFTY"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextGN"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:gravity="left"
+                                android:orientation="vertical">
+
+                                <com.example.daggerhilt.CustomControl.PTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Shanghai Composite"
+                                    android:textSize="@dimen/text_size_default"
+                                    android:textStyle="normal" />
+
+
+                            </LinearLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true">
+
+                                <com.example.daggerhilt.CustomControl.PEditText
+                                    android:id="@+id/EditTextSC"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:enabled="false"
+                                    android:gravity="center"
+                                    android:inputType="numberDecimal"
+                                    android:padding="3dp"
+                                    android:textAlignment="center" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </RelativeLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.example.daggerhilt.CustomControl.PTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Average"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_default"
+                android:textStyle="bold" />
+
+            <com.example.daggerhilt.CustomControl.PTextView
+                android:id="@+id/textViewAvarage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="0.0"
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_medium"
+                app:textStyle="@integer/bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="Enter Nifty Value">
+
+                <com.example.daggerhilt.CustomControl.PEditText
+                    android:id="@+id/EditTextNiftyValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:inputType="numberDecimal"
+                    android:padding="3dp"
+                    app:textStyle="@integer/bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.example.daggerhilt.CustomControl.PTextView
+                android:id="@+id/textViewNiftyAvarage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="0.0"
+                android:textAlignment="center"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <com.example.daggerhilt.CustomControl.PButton
+                android:id="@+id/ButtonCalculateNifty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text=" Nifty Calculate "
+                app:textStyle="@integer/bold"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

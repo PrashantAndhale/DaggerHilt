@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.ssp.android)
     implementation(libs.sdp.android)
     implementation(libs.google.material)
+    implementation(libs.volley)
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("org.mockito:mockito-core:3.+")
     testImplementation("org.mockito:mockito-inline:3.+")
