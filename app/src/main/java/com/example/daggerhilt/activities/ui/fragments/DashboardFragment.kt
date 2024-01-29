@@ -47,7 +47,7 @@ class DashboardFragment : Fragment() {
 
         val list = listOf(
             DashboardRVModal("Global Market", R.drawable.global_market),
-            DashboardRVModal("Global Market", R.drawable.global_market),
+            DashboardRVModal("First 45 Min to 1 Hour", R.drawable.global_market),
             DashboardRVModal("Global Market", R.drawable.global_market)
         )
 
@@ -58,6 +58,9 @@ class DashboardFragment : Fragment() {
             override fun onItemClicked(position: Int) {
                 if (position == 0) {
                     findNavController().navigate(R.id.action_dashboardFragment_to_globalMarketFragment)
+                }
+                if (position == 1) {
+                    findNavController().navigate(R.id.action_dashboardFragment_to_first45to1HourAnalysisFragment)
                 }
             }
         })

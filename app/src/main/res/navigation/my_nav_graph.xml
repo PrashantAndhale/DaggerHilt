@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_dashboardFragment_to_globalMarketFragment"
             app:destination="@id/globalMarketFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_first45to1HourAnalysisFragment"
+            app:destination="@id/first45to1HourAnalysisFragment" />
     </fragment>
     <fragment
         android:id="@+id/globalMarketFragment"
         android:name="com.example.daggerhilt.activities.ui.fragments.GlobalMarketFragment"
         android:label="Global Market"
         tools:layout="@layout/fragment_global_market" />
+    <fragment
+        android:id="@+id/first45to1HourAnalysisFragment"
+        android:name="com.example.daggerhilt.activities.ui.fragments.First45to1HourAnalysisFragment"
+        android:label="First 45 min to 1 hour Analysis"
+        tools:layout="@layout/fragment_first45to1_hour_analysis" />
 </navigation>

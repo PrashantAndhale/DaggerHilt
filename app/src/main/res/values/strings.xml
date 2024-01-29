@@ -7,5 +7,8 @@
     <string name="european_markets">EUROPEAN MARKETS(%)</string>
     <string name="asian_markets">ASIAN MARKETS(%)</string>
     <string name="global_market_analysis">Global Market Analysis</string>
+    <string name="calculate_market">Calculate Market</string>
+    <string name="enter_current_opening_nifty_value">Enter Current Opening Nifty Value</string>
+    <string name="enter_previous_day_closed_nifty_value">Enter Previous Day Closed Nifty Value</string>
 
 </resources>
